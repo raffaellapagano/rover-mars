@@ -9,7 +9,12 @@ export default new Vuex.Store({
       width: 1,
       height: 1
     },
-    orientationArray: ["a", "b", "c", "d"],
+    orientationArray: [
+      { value: 'a', text: 'North' },
+              { value: 'b', text: 'East' },
+              { value: 'c', text: 'South' },
+              { value: 'd', text: 'West' },
+    ],
     rover: {
       cordX: 0,
       cordY: 0,
@@ -65,14 +70,50 @@ export default new Vuex.Store({
       }
     },
     TurnLeft(state){
-      if(state.rover.orientation === state.orientationArray[3]){
-        state.rover.orientation === state.orientationArray[0];
+      let change = false;
+      if(state.rover.orientation.value === state.orientationArray[3].value){
+        state.rover.orientation.value = state.orientationArray[0].value;
+        state.rover.orientation.text = state.orientationArray[0].text;
       }else{
         for (let i = 0; i < 3; i++) {
-          if(state.rover.orientation === state.orientationArray[i]){
-            state.rover.orientation === state.orientationArray[i+1];
+          if(state.rover.orientation.value === state.orientationArray[i].value && !change){
+            state.rover.orientation.value = state.orientationArray[i+1].value;
+            state.rover.orientation.text = state.orientationArray[i+1].text;
+            change=true
           }
         }
+      }
+    },
+    TurnRight(state){
+      if(state.rover.orientation.value === state.orientationArray[0].value){
+        state.rover.orientation.value = state.orientationArray[3].value;
+        state.rover.orientation.text = state.orientationArray[3].text;
+      }else{
+        for (let i = 1; i < 4; i++) {
+          if(state.rover.orientation.value === state.orientationArray[i].value){
+            state.rover.orientation.value = state.orientationArray[i-1].value;
+            state.rover.orientation.text = state.orientationArray[i-1].text;
+          }
+        }
+      }
+    },
+    Go1Step(state, value){
+      switch (value) {
+        case "a":
+          state.rover.cordY += 1;
+          break;
+        case "b":
+          state.rover.cordX += 1;
+          break;
+        case "c":
+          state.rover.cordY -= 1;
+          break;
+        case "d":
+          state.rover.cordX -= 1;
+          break;
+      
+        default:
+          break;
       }
     },
     ValidateInside(state){

@@ -44,6 +44,19 @@
         </b-form-select>
       </b-form-group>
     </div>
+    <!-- User decides actions of Rover with Buttons -->
+    <div class= "my-3">
+    <b-button variant="outline-primary" class="mx-1" @click="TurnLeft()">Turn Left</b-button>
+    <b-button variant="outline-primary" class="mx-1" @click="TurnRight()">Turn Right</b-button>
+    <b-button variant="outline-primary" class="mx-1" @click="Go1Step(rover.orientation.value)">Advance</b-button>
+    </div>
+    <div class="d-flex justify-content-around col-8 m-auto"> 
+    <!-- Rover position after actions -->
+    <div>Coordinate X: {{rover.cordX}} </div>
+    <div>Coordinate Y: {{rover.cordY}} </div>
+    <div>Orientation: {{rover.orientation.text}}</div>
+     
+    </div>
 
     </div>
 </template>
@@ -95,7 +108,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation']),
+    ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation', 'TurnLeft', 'TurnRight', "Go1Step"]),
     ...mapGetters(['GetSquare', 'GetRover'])
   }
 }
