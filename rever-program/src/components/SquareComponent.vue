@@ -18,7 +18,7 @@
       </b-form-group>
       <!-- Square height -->
       <b-form-group
-        label="Square Size X"
+        label="Square Size Y"
         class="col-3"
         :invalid-feedback="invalidFeedbackHeight"
       >

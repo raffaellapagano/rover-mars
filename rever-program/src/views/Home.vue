@@ -1,9 +1,11 @@
 <template>
-  <div class="home container">
-    <h1>Rover to Mars</h1>
-    <hr class="col-4 m-auto mb-3">
+  <div class="home container border border-primary p-5 col-8">
+    <h1 :square="square">Rover to Mars</h1>
+    <hr class="col-6 m-auto mb-3">
 
     <Square/>
+    <hr class="col-6 m-auto my-4">
+    <Rover/>
 
   </div>
 </template>
@@ -11,11 +13,13 @@
 <script>
 import Vuex from "vuex"
 import Square from "../components/SquareComponent.vue"
+import Rover from "../components/RoverComponent.vue"
 
 export default {
   name: 'Home',
   components: {
-    Square
+    Square,
+    Rover
   },
   data() {
     return{
@@ -25,7 +29,7 @@ export default {
   methods: {
   },
   computed: {
-    ...Vuex.mapState(['square', 'orientacionArray'])
+    ...Vuex.mapState(['square'])
   }
   
 }
