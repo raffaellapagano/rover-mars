@@ -48,15 +48,17 @@
     <div class= "my-3">
     <b-button variant="outline-primary" class="mx-1" @click="TurnLeft()">Turn Left</b-button>
     <b-button variant="outline-primary" class="mx-1" @click="TurnRight()">Turn Right</b-button>
-    <b-button variant="outline-primary" class="mx-1" @click="Go1Step(rover.orientation.value)">Advance</b-button>
+    <b-button variant="outline-primary" class="mx-1" @click="Go1Step(rover.orientation.value); ValidateInside()">Advance</b-button>
     </div>
+    <p class="col-8 p-4 border border-primary m-auto my-2">{{commands}}</p>
     <div class="d-flex justify-content-around col-8 m-auto"> 
     <!-- Rover position after actions -->
     <div>Coordinate X: {{rover.cordX}} </div>
     <div>Coordinate Y: {{rover.cordY}} </div>
-    <div>Orientation: {{rover.orientation.text}}</div>
-     
+    <div>Orientation: {{rover.orientation.text}}</div>     
     </div>
+
+    <h1 v-if="outMars" class="bg-danger text-white">GAME OVER</h1>
 
     </div>
 </template>
@@ -79,11 +81,11 @@ export default {
               { value: 'b', text: 'East' },
               { value: 'c', text: 'South' },
               { value: 'd', text: 'West' },
-              ]                      
+              ]              
             }
     },
   computed: {
-    ...mapState(['rover', 'orientationArray', "square"]),
+    ...mapState(['rover', 'orientationArray', "square", "commands", "outMars"]),
     stateX() {
       return this.cordX <= (this.square.width -1);
     },
@@ -108,7 +110,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation', 'TurnLeft', 'TurnRight', "Go1Step"]),
+    ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation', 'TurnLeft', 'TurnRight', "Go1Step", "ValidateInside"]),
     ...mapGetters(['GetSquare', 'GetRover'])
   }
 }

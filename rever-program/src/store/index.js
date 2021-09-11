@@ -22,7 +22,9 @@ export default new Vuex.Store({
         value: "a",
         text: "North"
       }
-    }
+    },
+    commands: "",
+    outMars: false
   },
   // getters:{
   //   GetSquare(state){
@@ -83,19 +85,23 @@ export default new Vuex.Store({
           }
         }
       }
+      state.commands += "L"
     },
     TurnRight(state){
+      let change = false;
       if(state.rover.orientation.value === state.orientationArray[0].value){
         state.rover.orientation.value = state.orientationArray[3].value;
         state.rover.orientation.text = state.orientationArray[3].text;
       }else{
         for (let i = 1; i < 4; i++) {
-          if(state.rover.orientation.value === state.orientationArray[i].value){
+          if(state.rover.orientation.value === state.orientationArray[i].value && !change){
             state.rover.orientation.value = state.orientationArray[i-1].value;
             state.rover.orientation.text = state.orientationArray[i-1].text;
+            change=true
           }
         }
       }
+      state.commands += "R"
     },
     Go1Step(state, value){
       switch (value) {
@@ -115,11 +121,11 @@ export default new Vuex.Store({
         default:
           break;
       }
+      state.commands += "A"
     },
     ValidateInside(state){
-      // True is outside of Square
-      return state.rover.cordX >= state.square.width 
-        || state.rover.cordY >= state.square.height
+      state.outMars = state.rover.cordX > state.square.width 
+        || state.rover.cordY > state.square.height
         || state.rover.cordX < 0 || state.rover.cordY < 0
     }
   },
