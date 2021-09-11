@@ -1,5 +1,5 @@
 <template>
-  <div class="home container border border-primary p-5 col-8">
+  <div class="home container border border-primary p-5 col-">
     <h1 :square="square">Rover to Mars</h1>
     <hr class="col-6 m-auto mb-3">
 

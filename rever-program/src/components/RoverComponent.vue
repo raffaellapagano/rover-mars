@@ -46,9 +46,9 @@
     </div>
     <!-- User decides actions of Rover with Buttons -->
     <div class= "my-3">
-    <b-button variant="outline-primary" class="mx-1" @click="TurnLeft()">Turn Left</b-button>
-    <b-button variant="outline-primary" class="mx-1" @click="TurnRight()">Turn Right</b-button>
-    <b-button variant="outline-primary" class="mx-1" @click="Go1Step(rover.orientation.value); ValidateInside()">Advance</b-button>
+    <b-button variant="outline-primary" :disabled="disableBtn" class="mx-1" @click="TurnLeft()">Turn Left</b-button>
+    <b-button variant="outline-primary" :disabled="disableBtn" class="mx-1" @click="TurnRight()">Turn Right</b-button>
+    <b-button variant="outline-primary" :disabled="disableBtn" class="mx-1" @click="Go1Step(rover.orientation.value); ValidateInside()">Advance</b-button>
     </div>
     <p class="col-8 p-4 border border-primary m-auto my-2">{{commands}}</p>
     <div class="d-flex justify-content-around col-8 m-auto"> 
@@ -57,8 +57,12 @@
     <div>Coordinate Y: {{rover.cordY}} </div>
     <div>Orientation: {{rover.orientation.text}}</div>     
     </div>
-
-    <h1 v-if="outMars" class="bg-danger text-white">GAME OVER</h1>
+    <!-- Game Over -->
+    <div v-if="outMars" 
+      class="d-flex bg-danger text-white col-8 m-auto justify-content-center rounded animate__animated animate__bounceInDown">
+        <h1 class="p-2" >OUT OF SQUARE</h1>
+        <b-button variant="primary" class="m-2" @click="loadOnce()">Play again</b-button>
+    </div>
 
     </div>
 </template>
@@ -67,22 +71,22 @@
 import {mapMutations, mapState, mapGetters} from 'vuex'
 
 export default {
-    data() {
-        return{
-            cordX: 0,
-            cordY: 0,
-            orientationInicial:
-              {
-                value: "a",
-                text: "North"
-              },
-            options: [
-              { value: 'a', text: 'North' },
-              { value: 'b', text: 'East' },
-              { value: 'c', text: 'South' },
-              { value: 'd', text: 'West' },
-              ]              
-            }
+  data() {
+    return{
+      cordX: 0,
+      cordY: 0,
+      orientationInicial:{
+        value: "a",
+        text: "North"
+        },
+      options: [
+        { value: 'a', text: 'North' },
+        { value: 'b', text: 'East' },
+        { value: 'c', text: 'South' },
+        { value: 'd', text: 'West' }
+        ],
+        forceReload: 0            
+      }
     },
   computed: {
     ...mapState(['rover', 'orientationArray', "square", "commands", "outMars"]),
@@ -107,11 +111,18 @@ export default {
         return "Value less of height of the square"
       }
       return ""
+    },
+    disableBtn(){
+      return this.outMars
     }
   },
   methods: {
     ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation', 'TurnLeft', 'TurnRight', "Go1Step", "ValidateInside"]),
-    ...mapGetters(['GetSquare', 'GetRover'])
-  }
+    ...mapGetters(['GetSquare', 'GetRover']),
+    loadOnce() {
+      location.reload();
+    }
+  },
+
 }
 </script>
