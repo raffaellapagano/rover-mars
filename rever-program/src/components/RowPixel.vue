@@ -40,9 +40,6 @@ export default {
   },
   created(){
      this.drawSquare.width = parseInt(this.square.width);
-
-    // console.log(this.rectangle)
-    // console.log(this.square.width)
   }  
 }
 </script>

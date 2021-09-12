@@ -2,7 +2,7 @@
   <div>
     <!-- Create a Square and ask the size of width and height to the user -->
     <div class="row d-flex justify-content-center">
-      <h4>Size of Square</h4>
+      <h4 class="text-white">Size of Square</h4>
       <!-- Square width -->
       <b-form-group
         label="Square Size X"

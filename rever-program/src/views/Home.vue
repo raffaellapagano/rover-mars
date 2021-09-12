@@ -1,10 +1,10 @@
 <template>
-  <div class="home container border border-primary p-5 col-">
-    <h1 :square="square">Rover to Mars</h1>
-    <hr class="col-6 m-auto mb-3">
+  <div class="home container border border-primary p-5 mars">
+    <h1 :square="square" class="text-white">Rover to Mars</h1>
+    <hr class="col-6 m-auto mb-3 text-danger">
 
     <Square/>
-    <hr class="col-6 m-auto my-4">
+    <hr class="col-6 m-auto my-4 text-white border border-white">
     <Rover/>
 
   </div>
@@ -34,3 +34,13 @@ export default {
   
 }
 </script>
+
+<style scoped>
+.mars{
+  height: 800px;
+  background-image: url("../assets/MARS2.png");
+  background-repeat: repeat;
+  background-color: #cccccc;
+  background-position: center;
+}
+</style>

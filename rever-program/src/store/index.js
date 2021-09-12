@@ -16,6 +16,8 @@ export default new Vuex.Store({
               { value: 'd', text: 'West' },
     ],
     rover: {
+      cordXStart: 0,
+      cordYStart: 0,
       cordX: 0,
       cordY: 0,
       orientation: {
@@ -24,6 +26,7 @@ export default new Vuex.Store({
       }
     },
     commands: "",
+    confirm: false,
     outMars: false
   },
   // getters:{
@@ -70,6 +73,9 @@ export default new Vuex.Store({
         default:
           break;
       }
+    },
+    SetConfirm(state){
+      state.confirm=!state.confirm;
     },
     TurnLeft(state){
       let change = false;

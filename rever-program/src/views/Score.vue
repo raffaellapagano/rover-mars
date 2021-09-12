@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div>
-      <b-button block variant="primary" @click="startRover()">Start</b-button>
-    </div>
-    <div v-if="rectangle" class="d-flex row">
+  <div class="mars m-auto">
+    
+    <div class="d-flex row">
       <RowPixel v-for="pixel in drawSquare.height" :key="pixel.id"></RowPixel>
     </div>
+
+    <b-button variant="outline-success" class="mx-1" @click="back()">Back</b-button>
   </div>
 </template>
 
@@ -19,7 +19,6 @@ export default {
   },
   data() {
     return{
-      rectangle: false,
       drawSquare: {
         width: 0,
         height: 0
@@ -27,9 +26,8 @@ export default {
     }
   },
   methods: {
-    startRover(){
-      this.drawSquare.height = parseInt(this.square.height);
-      this.rectangle = true;
+    back(){
+      this.$router.go(-1);
     }
   },
   computed: {
@@ -41,4 +39,14 @@ export default {
   }  
 }
 </script>
+
+<style scoped>
+.mars{
+  height: 800px;
+  background-image: url("../assets/MARS.png");
+  background-repeat: no-repeat;
+  background-color: #cccccc;
+  background-position: center;
+}
+</style>
 
