@@ -28,7 +28,7 @@
           v-model="cordY" 
           :state="stateY" 
           trim
-          @keydown="SetRoverY(cordY)">
+          @blur="SetRoverY(cordY)">
         </b-form-input>
       </b-form-group>
         <!-- Rover orientation -->
@@ -91,10 +91,10 @@ export default {
   computed: {
     ...mapState(['rover', 'orientationArray', "square", "commands", "outMars"]),
     stateX() {
-      return this.cordX <= (this.square.width -1);
+      return this.cordX <= (this.square.width -1) && this.cordX >= 0;
     },
     stateY(){
-      return this.cordY <= (this.square.height-1);
+      return this.cordY <= (this.square.height-1) && this.cordY >= 0;
     },
     invalidFeedbackX(){
       if(this.cordX < 0){
