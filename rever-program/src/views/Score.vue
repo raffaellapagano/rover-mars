@@ -1,11 +1,30 @@
 <template>
-  <div class="mars m-auto">
+  <div class="mars m-auto d-flex align-items-center justify-content-center">
     
     <div class="d-flex row">
       <RowPixel v-for="pixel in drawSquare.height" :key="pixel.id"></RowPixel>
     </div>
 
-    <b-button variant="outline-success" class="mx-1" @click="back()">Back</b-button>
+    <div>
+  <b-card
+    title="Rover Details"
+    img-alt="Rover"
+    img-top
+    tag="article"
+    style="max-width: 20rem;"
+    class="m-auto mt-3 opacity"
+  >
+    <b-card-text>
+      Initial coordinate X: {{rover.cordXStart}} <br/>
+      Initial coordinate Y: {{rover.cordYStart}} <br/>
+      Final coordinate X: {{rover.cordX}} <br/>
+      Final coordinate Y: {{rover.cordY}} <br/>
+      Final Orientation: {{rover.orientation.text}}
+    </b-card-text>
+
+    <b-button variant="primary" class="mx-1" @click="back()">Back</b-button>
+  </b-card>
+</div>
   </div>
 </template>
 
@@ -31,7 +50,7 @@ export default {
     }
   },
   computed: {
-    ...Vuex.mapState(['square'])
+    ...Vuex.mapState(['square', 'rover'])
   },
   created(){
     // console.log(this.rectangle)
@@ -47,6 +66,10 @@ export default {
   background-repeat: no-repeat;
   background-color: #cccccc;
   background-position: center;
+}
+
+.opacity{
+  opacity: .8;
 }
 </style>
 
