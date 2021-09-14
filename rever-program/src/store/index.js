@@ -45,7 +45,7 @@ export default new Vuex.Store({
     SetSquareY(state, value){
       state.square.height = value;
     },
-     // methods Rover
+     // setter Rover
     SetRoverX(state, value){
       state.rover.cordX = value;
     },
@@ -77,6 +77,7 @@ export default new Vuex.Store({
     SetConfirm(state){
       state.confirm=!state.confirm;
     },
+    // methods Rover
     TurnLeft(state){
       let change = false;
       if(state.rover.orientation.value === state.orientationArray[3].value){
@@ -112,16 +113,16 @@ export default new Vuex.Store({
     Go1Step(state, value){
       switch (value) {
         case "a":
-          state.rover.cordY += 1;
+          state.rover.cordY = parseInt(state.rover.cordY) + 1;
           break;
         case "b":
-          state.rover.cordX += 1;
+          state.rover.cordX = parseInt(state.rover.cordX) + 1;
           break;
         case "c":
-          state.rover.cordY -= 1;
+          state.rover.cordY = parseInt(state.rover.cordY) - 1;
           break;
         case "d":
-          state.rover.cordX -= 1;
+          state.rover.cordX = parseInt(state.rover.cordX) - 1;
           break;
       
         default:

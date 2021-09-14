@@ -4,14 +4,6 @@
       <div class="d-flex">
       <Pixel v-for="pixel in drawSquare.width" :key="pixel.id"></Pixel>
     </div>
-      
-      <!-- <div v-if="drawSquare.width2>1">
-        <Pixel v-for="pixel in drawSquare.width2" :key="pixel.id"></Pixel>
-      </div>
-      <Pixel/>
-      <div v-if="drawSquare.width2>0">
-        <Pixel v-for="pixel in drawSquare.width" :key="pixel.id"></Pixel>
-      </div> -->
     </div>
   </div>
 </template>

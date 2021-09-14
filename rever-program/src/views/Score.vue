@@ -6,7 +6,10 @@
     </div>
 
     <div>
+      
+
   <b-card
+    :img-src="require('../assets/rocket.png')"
     title="Rover Details"
     img-alt="Rover"
     img-top
@@ -15,6 +18,7 @@
     class="m-auto mt-3 opacity"
   >
     <b-card-text>
+      Moves untill out of Square: {{commands.length}} <br/>
       Initial coordinate X: {{rover.cordXStart}} <br/>
       Initial coordinate Y: {{rover.cordYStart}} <br/>
       Final coordinate X: {{rover.cordX}} <br/>
@@ -50,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...Vuex.mapState(['square', 'rover'])
+    ...Vuex.mapState(['square', 'rover', 'commands'])
   },
   created(){
     // console.log(this.rectangle)
@@ -70,6 +74,11 @@ export default {
 
 .opacity{
   opacity: .8;
+}
+
+b-card img{
+  background-image: url(".././assets/rocket.png");
+  
 }
 </style>
 

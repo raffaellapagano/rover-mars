@@ -54,12 +54,8 @@
     <p v-if="commands.length>0" class="col-8 bg-light border border-primary m-auto my-2">{{commands}}</p>
     <hr class="text-white col-8 m-auto my-3">
     <div class="text-white">ACTUAL ROVER'S POSITION</div>
-    <div class="d-flex justify-content-around col-8 m-auto"> 
     <!-- Rover position after actions -->
-    <div class="text-white">Coordinate X: {{rover.cordX}} </div>
-    <div class="text-white">Coordinate Y: {{rover.cordY}} </div>
-    <div class="text-white">Orientation: {{rover.orientation.text}}</div>     
-    </div>
+    <RocketCardPosition class="d-flex justify-content-center"/>
     <!-- Game Over -->
     <div v-if="outMars" 
       class="d-flex bg-black text-danger mt-2 col-8 m-auto justify-content-center rounded animate__animated animate__bounceInDown">
@@ -69,10 +65,12 @@
     </div>
 
     </div>
+    
 </template>
 
 <script>
 import {mapMutations, mapState, mapGetters} from 'vuex'
+import RocketCardPosition from './RocketCardPosition.vue'
 
 export default {
   data() {
@@ -91,6 +89,9 @@ export default {
         ]         
       }
     },
+  components:{
+    RocketCardPosition
+  },
   computed: {
     ...mapState(['rover', 'orientationArray', "square", "commands", "confirm", "outMars"]),
     stateX() {
