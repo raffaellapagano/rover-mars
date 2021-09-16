@@ -45,11 +45,12 @@
       </b-form-group>
       <b-button pill variant="primary" class="mx-1 col-2 mt-4" size="sm" @click="SetConfirm()">Confirm</b-button>
     </div>
+    <div class="d-flex justify-content-around col-10 m-auto">
     <!-- User decides actions of Rover with Buttons -->
-    <div v-if="confirm" class="bg-dark rounded p-2 my-2">
+    <div v-if="confirm" class="bg-dark rounded p-2 my-2 mt-4">
       <b-form-group style="color: white; font-size:18pt"
         label="Commands"
-        class="col-8 m-auto"
+        class="col-9 m-auto"
         :invalid-feedback="invalidCommands"
       >
         <b-form-input
@@ -63,15 +64,15 @@
       <b-button pill variant="success" class="my-2" @click="MoveRocket()">Move</b-button>
     </div>
     <!-- Rover position -->
-    <hr class="text-white col-8 m-auto my-3">
-    <div class="text-white">ACTUAL ROVER'S POSITION</div>
-    <RocketCardPosition class="d-flex justify-content-center"/>
-    <!-- Game Over -->
-    <div v-if="outMars" 
-      class="d-flex bg-black text-danger mt-2 col-8 m-auto justify-content-center rounded animate__animated animate__bounceInDown">
-        <h1 class="p-2" >OUT OF SQUARE</h1>
-        <b-button variant="light" class="m-4" @click="goToScore()">Score</b-button>
-        <b-button variant="primary" class="m-4" @click="loadOnce()">Play again</b-button>
+    
+      <RocketCardPosition class="d-flex"/>
+      </div>
+      <!-- Game Over -->
+      <div v-if="outMars" 
+        class="d-flex bg-black text-danger mt-2 col-6 m-auto justify-content-center rounded animate__animated animate__bounceInDown">
+          <h1 class="p-2" >OUT OF SQUARE</h1>
+          <b-button variant="light" class="m-4" @click="goToScore()">Score</b-button>
+          <b-button variant="primary" class="m-4" @click="loadOnce()">Play again</b-button>
     </div>
 
     </div>

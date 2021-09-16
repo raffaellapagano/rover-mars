@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="d-flex flex-column">
+      <div class="text-white">ACTUAL ROVER'S POSITION</div>
         <!-- Option North -->
        <div v-if="rover.orientation.text === 'North'">
   <b-card no-body class="overflow-hidden" style="max-width: 300px;">
@@ -10,9 +11,9 @@
       <b-col md="6">
         <b-card-body title="Rocket Position">
           <b-card-text>
-            Coordinate X: {{rover.cordX}}
-            Coordinate Y: {{rover.cordY}}
-            Orientation: {{rover.orientation.text}}
+            Coord. X: {{rover.cordX}}
+            Coord. Y: {{rover.cordY}}
+            Orient.: {{rover.orientation.text}}
           </b-card-text>
         </b-card-body>
       </b-col>
