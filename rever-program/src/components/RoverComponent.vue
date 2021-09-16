@@ -46,15 +46,25 @@
       <b-button pill variant="primary" class="mx-1 col-2 mt-4" size="sm" @click="SetConfirm()">Confirm</b-button>
     </div>
     <!-- User decides actions of Rover with Buttons -->
-    <div v-if="confirm" class= "my-3">
-    <b-button pill variant="primary" :disabled="disableBtn" class="mx-1" @click="TurnLeft()">Turn Left</b-button>
-    <b-button pill variant="primary" :disabled="disableBtn" class="mx-1" @click="TurnRight()">Turn Right</b-button>
-    <b-button pill variant="primary" :disabled="disableBtn" class="mx-1" @click="Go1Step(rover.orientation.value); ValidateInside()">Advance</b-button>
+    <div v-if="confirm" class="bg-dark rounded p-2 my-2">
+      <b-form-group style="color: white; font-size:18pt"
+        label="Commands"
+        class="col-8 m-auto"
+        :invalid-feedback="invalidCommands"
+      >
+        <b-form-input id="squareX"
+          type="text"
+          v-model="textComand" 
+          :state="stateCommands" 
+          placeholder="Introduce commands"
+          trim>
+        </b-form-input>
+      </b-form-group>
+      <b-button pill variant="success" class="my-2" @click="MoveRocket()">Move</b-button>
     </div>
-    <p v-if="commands.length>0" class="col-8 bg-light border border-primary m-auto my-2">{{commands}}</p>
+    <!-- Rover position -->
     <hr class="text-white col-8 m-auto my-3">
     <div class="text-white">ACTUAL ROVER'S POSITION</div>
-    <!-- Rover position after actions -->
     <RocketCardPosition class="d-flex justify-content-center"/>
     <!-- Game Over -->
     <div v-if="outMars" 
@@ -79,8 +89,9 @@ export default {
       cordY: 0,
       orientationInicial:{
         value: "a",
-        text: "North"
+        text: "North",
         },
+      textComand: "",
       options: [
         { value: 'a', text: 'North' },
         { value: 'b', text: 'East' },
@@ -100,6 +111,18 @@ export default {
     stateY(){
       return this.cordY <= (this.square.height-1) && this.cordY >= 0;
     },
+    stateCommands(){
+      let verify = true
+      if(this.textComand.length === 0){
+        verify = false
+      }
+      for (let i = 0; i < this.textComand.length; i++) {
+        if(this.textComand[i] != 'A' || this.textComand[i] != 'R' || this.textComand[i] != 'L'){
+          verify = false
+        }
+      }
+      return verify
+    },
     invalidFeedbackX(){
       if(this.cordX < 0){
         return "Add a positive value..."
@@ -116,18 +139,51 @@ export default {
       }
       return ""
     },
+    invalidCommands(){
+      if(this.textComand.length === 0){
+          return "Add commands"
+        }
+      for (let i = 0; i < this.textComand.length; i++) {
+        if(this.textComand[i] != 'A' || this.textComand[i] != 'R' || this.textComand[i] != 'L'){
+          return "Write commands like AALLRR"
+        }
+      }
+      return ""
+      
+    },
     disableBtn(){
       return this.outMars;
     }
   },
   methods: {
-    ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation', 'SetConfirm', 'TurnLeft', 'TurnRight', "Go1Step", "ValidateInside"]),
+    ...mapMutations(['SetRoverX', 'SetRoverY', 'SetRoverOrientation', 'SetCommands', 'SetConfirm', 'TurnLeft', 'TurnRight', "Go1Step", "ValidateInside"]),
     ...mapGetters(['GetSquare', 'GetRover']),
     // Confirm rover's inputs
     Confirm(){
       this.rover.cordXStart = this.rover.cordX;
       this.rover.cordYStart = this.rover.cordY;
       this.confirm = true;
+    },
+    MoveRocket(){
+      console.log(this.textComand)
+      for (let i = 0; i < this.textComand.length; i++) {
+        switch (this.textComand[i]) {
+          case "R":
+            this.TurnRight()            
+            break;
+          case "L":
+            this.TurnLeft() 
+            break;
+          case "A":
+            this.Go1Step(this.textComand[i])
+            this.ValidateInside()
+              break;
+        
+          default:
+            break;
+        }
+      }
+      console.log(this.outMars)
     },
     loadOnce() {
       location.reload();

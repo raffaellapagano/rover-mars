@@ -74,6 +74,9 @@ export default new Vuex.Store({
           break;
       }
     },
+    SetCommands(state, value){
+      state.commands = value;
+    },
     SetConfirm(state){
       state.confirm=!state.confirm;
     },
@@ -92,7 +95,6 @@ export default new Vuex.Store({
           }
         }
       }
-      state.commands += "L"
     },
     TurnRight(state){
       let change = false;
@@ -108,33 +110,39 @@ export default new Vuex.Store({
           }
         }
       }
-      state.commands += "R"
     },
     Go1Step(state, value){
       switch (value) {
-        case "a":
+        case "A":
           state.rover.cordY = parseInt(state.rover.cordY) + 1;
           break;
-        case "b":
+        case "B":
           state.rover.cordX = parseInt(state.rover.cordX) + 1;
           break;
-        case "c":
+        case "C":
           state.rover.cordY = parseInt(state.rover.cordY) - 1;
           break;
-        case "d":
+        case "D":
           state.rover.cordX = parseInt(state.rover.cordX) - 1;
           break;
       
         default:
           break;
       }
-      state.commands += "A"
+      return "move"
     },
     ValidateInside(state){
-      state.outMars = state.rover.cordX > state.square.width 
-        || state.rover.cordY > state.square.height
-        || state.rover.cordX < 0 || state.rover.cordY < 0
+      if(state.rover.cordX > state.square.width 
+        || (state.rover.cordY > state.square.height)
+        || (state.rover.cordX < 0) || (state.rover.cordY < 0)){
+        state.outMars = true
+      }else{
+        state.outMars = false
+      }
     }
+  },
+  computed:{
+    
   },
   actions: {
   },
