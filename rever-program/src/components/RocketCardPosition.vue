@@ -24,7 +24,7 @@
   <b-card no-body class="overflow-hidden" style="max-width: 300px;">
     <b-row no-gutters>
       <b-col md="6">
-        <b-card :img-src="require('../assets/rocket.png')" alt="Image" class="rounded-0"></b-card>
+        <b-card :img-src="require('../assets/rocketW.png')" alt="Image" class="rounded-0"></b-card>
       </b-col>
       <b-col md="6">
        <b-card-body title="Rocket Position">
@@ -62,7 +62,7 @@
   <b-card no-body class="overflow-hidden" style="max-width: 300px;">
     <b-row no-gutters>
       <b-col md="6">
-        <b-card :img-src="require('../assets/rocketW.png')" alt="Image" class="rounded-0"></b-card>
+        <b-card :img-src="require('../assets/rocket.png')" alt="Image" class="rounded-0"></b-card>
       </b-col>
       <b-col md="6">
         <b-card-body title="Rocket Position">

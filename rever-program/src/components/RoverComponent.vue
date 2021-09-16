@@ -52,7 +52,7 @@
         class="col-8 m-auto"
         :invalid-feedback="invalidCommands"
       >
-        <b-form-input id="squareX"
+        <b-form-input
           type="text"
           v-model="textComand" 
           :state="stateCommands" 
@@ -175,7 +175,7 @@ export default {
             this.TurnLeft() 
             break;
           case "A":
-            this.Go1Step(this.textComand[i])
+            this.Go1Step(this.rover.orientation.value)
             this.ValidateInside()
               break;
         

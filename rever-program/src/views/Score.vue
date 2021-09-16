@@ -15,10 +15,10 @@
     img-top
     tag="article"
     style="max-width: 20rem;"
-    class="m-auto mt-3 opacity"
+    class="m-auto mt-3 opacity animate__animated animate__zoomInDown"
   >
     <b-card-text>
-      Moves untill out of Square: {{commands.length}} <br/>
+      Out of Square: {{outMars}} <br/>
       Initial coordinate X: {{rover.cordXStart}} <br/>
       Initial coordinate Y: {{rover.cordYStart}} <br/>
       Final coordinate X: {{rover.cordX}} <br/>
@@ -54,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...Vuex.mapState(['square', 'rover', 'commands'])
+    ...Vuex.mapState(['square', 'rover', 'outMars'])
   },
   created(){
     // console.log(this.rectangle)

@@ -113,17 +113,17 @@ export default new Vuex.Store({
     },
     Go1Step(state, value){
       switch (value) {
-        case "A":
+        case "a":
           state.rover.cordY = parseInt(state.rover.cordY) + 1;
           break;
-        case "B":
-          state.rover.cordX = parseInt(state.rover.cordX) + 1;
+        case "b":
+          state.rover.cordX = parseInt(state.rover.cordX) - 1;
           break;
-        case "C":
+        case "c":
           state.rover.cordY = parseInt(state.rover.cordY) - 1;
           break;
-        case "D":
-          state.rover.cordX = parseInt(state.rover.cordX) - 1;
+        case "d":
+          state.rover.cordX = parseInt(state.rover.cordX) + 1;
           break;
       
         default:
