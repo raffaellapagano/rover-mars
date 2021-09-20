@@ -29,14 +29,14 @@ export default new Vuex.Store({
     confirm: false,
     outMars: false
   },
-  // getters:{
-  //   GetSquare(state){
-  //     return state.square;
-  //   },
-  //   GetRover(state){
-  //     return state.rover;
-  //   }
-  // },
+  getters:{
+    GetSquare(state){
+      return state.square;
+    },
+    GetRover(state){
+      return state.rover;
+    }
+  },
   mutations: {
     // methods Square
     SetSquareX(state, value){
@@ -81,7 +81,7 @@ export default new Vuex.Store({
       state.confirm=!state.confirm;
     },
     // methods Rover
-    TurnLeft(state){
+    TurnRight(state){
       let change = false;
       if(state.rover.orientation.value === state.orientationArray[3].value){
         state.rover.orientation.value = state.orientationArray[0].value;
@@ -96,7 +96,7 @@ export default new Vuex.Store({
         }
       }
     },
-    TurnRight(state){
+    TurnLeft(state){
       let change = false;
       if(state.rover.orientation.value === state.orientationArray[0].value){
         state.rover.orientation.value = state.orientationArray[3].value;
@@ -117,13 +117,13 @@ export default new Vuex.Store({
           state.rover.cordY = parseInt(state.rover.cordY) + 1;
           break;
         case "b":
-          state.rover.cordX = parseInt(state.rover.cordX) - 1;
+          state.rover.cordX = parseInt(state.rover.cordX) + 1;
           break;
         case "c":
           state.rover.cordY = parseInt(state.rover.cordY) - 1;
           break;
         case "d":
-          state.rover.cordX = parseInt(state.rover.cordX) + 1;
+          state.rover.cordX = parseInt(state.rover.cordX) - 1;
           break;
       
         default:

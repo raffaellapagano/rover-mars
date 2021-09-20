@@ -45,9 +45,9 @@
       </b-form-group>
       <b-button pill variant="primary" class="mx-1 col-2 mt-4" size="sm" @click="SetConfirm()">Confirm</b-button>
     </div>
-    <div class="d-flex justify-content-around col-10 m-auto">
+    <div class="d-flex justify-content-around col-10 m-auto align-items-center">
     <!-- User decides actions of Rover with Buttons -->
-    <div v-if="confirm" class="bg-dark rounded p-2 my-2 mt-4">
+    <div v-if="confirm" class="bg-dark rounded p-2 m-4">
       <b-form-group style="color: white; font-size:18pt"
         label="Commands"
         class="col-9 m-auto"
@@ -61,11 +61,23 @@
           trim>
         </b-form-input>
       </b-form-group>
-      <b-button pill variant="success" class="my-2" @click="MoveRocket()">Move</b-button>
+      <b-button pill :disabled="disableMove" variant="success" class="my-2" @click="MoveRocket()">Move</b-button>
     </div>
     <!-- Rover position -->
-    
-      <RocketCardPosition class="d-flex"/>
+
+
+        <div v-if="rover.orientation.text === 'North'" >
+        <RocketCardPosition :orientationRock = arrayImgOrientation[0] class="d-flex"/>
+        </div>
+        <div v-else-if="rover.orientation.text === 'West'" >
+        <RocketCardPosition :orientationRock = arrayImgOrientation[1] class="d-flex"/>
+        </div>
+        <div v-else-if="rover.orientation.text === 'South'" >
+        <RocketCardPosition :orientationRock = arrayImgOrientation[2] class="d-flex"/>
+        </div>
+        <div v-else-if="rover.orientation.text === 'East'" >
+        <RocketCardPosition :orientationRock = arrayImgOrientation[3] class="d-flex"/>
+        </div>
       </div>
       <!-- Game Over -->
       <div v-if="outMars" 
@@ -97,8 +109,14 @@ export default {
         { value: 'a', text: 'North' },
         { value: 'b', text: 'East' },
         { value: 'c', text: 'South' },
-        { value: 'd', text: 'West' }
-        ]         
+        { value: 'd', text: 'West' }]
+        ,
+      arrayImgOrientation: [
+        {textO: 'North', imgO: 'rocketN.png'},
+        {textO: 'West', imgO: 'rocketW.png'},
+        {textO: 'South', imgO: 'rocketS.png'},
+        {textO: 'East', imgO: 'rocket.png'},
+      ]   
       }
     },
   components:{
@@ -118,7 +136,7 @@ export default {
         verify = false
       }
       for (let i = 0; i < this.textComand.length; i++) {
-        if(this.textComand[i] != 'A' || this.textComand[i] != 'R' || this.textComand[i] != 'L'){
+        if(this.textComand[i] != 'A' && this.textComand[i] != 'R' && this.textComand[i] != 'L'){
           verify = false
         }
       }
@@ -154,6 +172,18 @@ export default {
     },
     disableBtn(){
       return this.outMars;
+    },
+    disableMove(){
+      let verify = false
+      if(this.textComand.length === 0){
+        verify = true
+      }
+      for (let i = 0; i < this.textComand.length; i++) {
+        if(this.textComand[i] != 'A' && this.textComand[i] != 'R' && this.textComand[i] != 'L'){
+          verify = true
+        }
+      }
+      return verify
     }
   },
   methods: {
