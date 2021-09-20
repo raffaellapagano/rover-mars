@@ -28,6 +28,7 @@ export default new Vuex.Store({
     commands: "",
     confirm: false,
     outMars: false,
+    moves: 0
   },
   getters: {
     GetSquare(state) {
@@ -77,6 +78,9 @@ export default new Vuex.Store({
     SetCommands(state, value) {
       state.commands = value;
     },
+    AddMovies(state){
+      state.moves++
+    },
     SetConfirm(state) {
       state.confirm = !state.confirm;
     },
@@ -98,6 +102,9 @@ export default new Vuex.Store({
           }
         }
       }
+      if(!state.outMars){
+        state.moves++
+      }
     },
     TurnLeft(state) {
       let change = false;
@@ -115,6 +122,9 @@ export default new Vuex.Store({
             change = true;
           }
         }
+      }
+      if(!state.outMars){
+        state.moves++
       }
     },
     Go1Step(state, value) {
@@ -134,6 +144,9 @@ export default new Vuex.Store({
 
         default:
           break;
+      }
+      if(!state.outMars){
+        state.moves++
       }
       return "move";
     },

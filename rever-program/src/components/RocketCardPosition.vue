@@ -13,6 +13,7 @@
             Coord. Y: {{rover.cordY}}
             Orient.: {{rover.orientation.text}}
           </b-card-text>
+          <b-button v-if="confirm" variant="primary" class="mx-1" @click="back()">Back</b-button>
         </b-card-body>
       </b-col>
     </b-row>
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   data() {
@@ -37,7 +38,11 @@ export default {
         }
     },
     computed: {
-    ...mapState(['rover'])
+    ...mapState(['rover', 'confirm'])
+    },
+    methods:{
+      ...mapMutations(["back"])
     }
+
 }
 </script>

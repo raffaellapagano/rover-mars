@@ -1,9 +1,9 @@
 <template>
-  <div class="mars m-auto d-flex align-items-center justify-content-center">
+  <div class="mars m-auto d-flex align-items-center justify-content-center flex-wrap">
     <div class="m-3">
       <b-card
         title="Square Details"
-        style="max-width: 20rem"
+        style="min-width: 20rem max-width: 40%"
         class="m-auto m-3 opacity animate__animated animate__zoomInDown"
       >
         <b-card-text>
@@ -18,6 +18,7 @@
           Out of Square: {{ outMars }} <br />
           Square X: {{ square.width }} <br />
           Square Y: {{ square.height }} <br />
+          Moves Inside: {{ totalmoves }} <br />
         </b-card-text>
       </b-card>
     </div>
@@ -61,6 +62,7 @@ export default {
         width: 0,
         height: 0,
       },
+      totalmoves: 3
     };
   },
   methods: {
@@ -69,10 +71,11 @@ export default {
     },
   },
   computed: {
-    ...Vuex.mapState(["square", "rover", "outMars"]),
+    ...Vuex.mapState(["square", "rover", "outMars", "moves"]),
   },
   created() {
     this.drawSquare.height = parseInt(this.square.height);
+    this.totalmoves = this.moves
   },
 };
 </script>

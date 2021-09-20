@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- User choose Coordinate X, Y and orientation of a Rover-->
-    <div class="row d-flex justify-content-center align-items-end">
+    <div v-if="!confirm" class="row d-flex justify-content-center align-items-end">
       <h4 class="text-white">Coodinate X of the Rover</h4>
       <!-- Rover coordinate X -->
       <b-form-group
@@ -60,6 +60,13 @@
     <div class="d-flex justify-content-around col-10 m-auto align-items-center">
       <!-- User decides actions of Rover with Buttons -->
       <div v-if="confirm" class="bg-dark rounded p-2 m-4">
+        <div class="mt-3">
+          <b-button-group size="sm">
+            <b-button variant="warning" @click="textComand += 'L'">LEFT</b-button>
+            <b-button variant="info" @click="textComand += 'R'">RIGHT</b-button>
+            <b-button variant="success" @click="textComand += 'A'">ADVANCE</b-button>
+          </b-button-group>
+        </div>
         <b-form-group
           style="color: white; font-size: 18pt"
           label="Commands"
@@ -176,6 +183,7 @@ export default {
       "commands",
       "confirm",
       "outMars",
+      "moves"
     ]),
     stateX() {
       return this.cordX <= this.square.width - 1 && this.cordX >= 0;
@@ -256,6 +264,7 @@ export default {
       "SetRoverY",
       "SetRoverOrientation",
       "SetCommands",
+      "AddMovies",
       "SetConfirm",
       "TurnLeft",
       "TurnRight",
@@ -288,7 +297,6 @@ export default {
             break;
         }
       }
-      console.log(this.outMars);
     },
     loadOnce() {
       location.reload();
