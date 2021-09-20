@@ -1,70 +1,84 @@
 <template>
   <div class="mars m-auto d-flex align-items-center justify-content-center">
-    
-    <div class="d-flex row">
-      <RowPixel v-for="pixel in drawSquare.height" :key="pixel.id"></RowPixel>
+    <div class="m-3">
+      <b-card
+        title="Square Details"
+        style="max-width: 20rem"
+        class="m-auto m-3 opacity animate__animated animate__zoomInDown"
+      >
+        <b-card-text>
+          <div class="d-flex row">
+            <RowPixel
+              v-for="pixel in drawSquare.height"
+              :key="pixel.id"
+            ></RowPixel>
+          </div>
+        </b-card-text>
+        <b-card-text>
+          Out of Square: {{ outMars }} <br />
+          Square X: {{ square.width }} <br />
+          Square Y: {{ square.height }} <br />
+        </b-card-text>
+      </b-card>
     </div>
 
     <div>
-      
+      <b-card
+        :img-src="require('../assets/rocket.png')"
+        title="Rover Details"
+        img-alt="Rover"
+        img-top
+        tag="article"
+        style="max-width: 20rem"
+        class="m-auto mt-3 opacity animate__animated animate__zoomInDown"
+      >
+        <b-card-text>
+          Out of Square: {{ outMars }} <br />
+          Initial coordinate X: {{ rover.cordXStart }} <br />
+          Initial coordinate Y: {{ rover.cordYStart }} <br />
+          Final coordinate X: {{ rover.cordX }} <br />
+          Final coordinate Y: {{ rover.cordY }} <br />
+          Final Orientation: {{ rover.orientation.text }}
+        </b-card-text>
 
-  <b-card
-    :img-src="require('../assets/rocket.png')"
-    title="Rover Details"
-    img-alt="Rover"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="m-auto mt-3 opacity animate__animated animate__zoomInDown"
-  >
-    <b-card-text>
-      Out of Square: {{outMars}} <br/>
-      Initial coordinate X: {{rover.cordXStart}} <br/>
-      Initial coordinate Y: {{rover.cordYStart}} <br/>
-      Final coordinate X: {{rover.cordX}} <br/>
-      Final coordinate Y: {{rover.cordY}} <br/>
-      Final Orientation: {{rover.orientation.text}}
-    </b-card-text>
-
-    <b-button variant="primary" class="mx-1" @click="back()">Back</b-button>
-  </b-card>
-</div>
+        <b-button variant="primary" class="mx-1" @click="back()">Back</b-button>
+      </b-card>
+    </div>
   </div>
 </template>
 
 <script>
-import Vuex from "vuex"
-import RowPixel from "../components/RowPixel.vue"
+import Vuex from "vuex";
+import RowPixel from "../components/RowPixel.vue";
 
 export default {
   components: {
-    RowPixel
+    RowPixel,
   },
   data() {
-    return{
+    return {
       drawSquare: {
         width: 0,
-        height: 0
-      }
-    }
+        height: 0,
+      },
+    };
   },
   methods: {
-    back(){
+    back() {
       this.$router.go(-1);
-    }
+    },
   },
   computed: {
-    ...Vuex.mapState(['square', 'rover', 'outMars'])
+    ...Vuex.mapState(["square", "rover", "outMars"]),
   },
-  created(){
-    // console.log(this.rectangle)
-    // console.log(this.square.width)
-  }  
-}
+  created() {
+    this.drawSquare.height = parseInt(this.square.height);
+  },
+};
 </script>
 
 <style scoped>
-.mars{
+.mars {
   height: 800px;
   background-image: url("../assets/MARS.png");
   background-repeat: no-repeat;
@@ -72,13 +86,12 @@ export default {
   background-position: center;
 }
 
-.opacity{
-  opacity: .8;
+.opacity {
+  opacity: 0.8;
 }
 
-b-card img{
+b-card img {
   background-image: url(".././assets/rocket.png");
-  
 }
 </style>
 

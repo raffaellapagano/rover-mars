@@ -1,42 +1,37 @@
 <template>
   <div class="home container border border-primary p-5 mars">
     <h1 :square="square" class="text-white">Rover to Mars</h1>
-    <hr class="col-6 m-auto mb-3 text-danger">
+    <hr class="col-6 m-auto mb-3 text-danger" />
 
-    <Square/>
-    <hr class="col-6 m-auto my-4 text-white border border-white">
-    <Rover/>
-
+    <Square />
+    <hr class="col-6 m-auto my-4 text-white border border-white" />
+    <Rover />
   </div>
 </template>
 
 <script>
-import Vuex from "vuex"
-import Square from "../components/SquareComponent.vue"
-import Rover from "../components/RoverComponent.vue"
+import Vuex from "vuex";
+import Square from "../components/SquareComponent.vue";
+import Rover from "../components/RoverComponent.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Square,
-    Rover
+    Rover,
   },
   data() {
-    return{
-
-    }
+    return {};
   },
-  methods: {
-  },
+  methods: {},
   computed: {
-    ...Vuex.mapState(['square'])
-  }
-  
-}
+    ...Vuex.mapState(["square"]),
+  },
+};
 </script>
 
 <style scoped>
-.mars{
+.mars {
   height: 800px;
   background-image: url("../assets/MARS2.png");
   background-repeat: repeat;

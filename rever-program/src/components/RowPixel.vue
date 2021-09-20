@@ -1,45 +1,42 @@
 <template>
   <div>
     <div class="d-flex">
-      <div class="d-flex">
-      <Pixel v-for="pixel in drawSquare.width" :key="pixel.id"></Pixel>
-    </div>
+      <div class="d-flex m-auto">
+        <Pixel v-for="pixel in drawSquare.width" :key="pixel.id"></Pixel>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Vuex from "vuex"
-import Pixel from "./Pixel.vue"
+import Vuex from "vuex";
+import Pixel from "./Pixel.vue";
 
 export default {
   components: {
-    Pixel
+    Pixel,
   },
   data() {
-    return{
+    return {
       drawSquare: {
-        width: 0,
-        height: 0
-      }
-    }
+        width: 3,
+        height: 0,
+      },
+    };
   },
-  methods: {
-    
-  },
+  methods: {},
   computed: {
-    ...Vuex.mapState(['square', 'rover']),
+    ...Vuex.mapState(["square", "rover"]),
   },
-  created(){
-     this.drawSquare.width = parseInt(this.square.width);
-  }  
-}
+  created() {
+    this.drawSquare.width = parseInt(this.square.width);
+  },
+};
 </script>
 
 
 <style scoped>
-.opacity{
-    opacity: .8;
+.opacity {
+  opacity: 0.8;
 }
-
 </style>

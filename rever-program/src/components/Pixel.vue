@@ -6,23 +6,17 @@
 
 <script>
 export default {
-  components: {
-  },
+  components: {},
   data() {
-    return{
-
-    }
+    return {};
   },
-  methods: {
-  },
-  computed: {
-  }
-  
-}
+  methods: {},
+  computed: {},
+};
 </script>
 
 <style scope>
-.pixel{
+.pixel {
   width: 50px;
   height: 50px;
   background: red;
