@@ -3,8 +3,8 @@
     <div class="m-3">
       <b-card
         title="Square Details"
-        style="min-width: 20rem max-width: 40%"
-        class="m-auto m-3 opacity animate__animated animate__zoomInDown"
+        style="min-width: 20rem"
+        class="m-auto col-6 m-3 opacity animate__animated animate__zoomInDown"
       >
         <b-card-text>
           <div class="d-flex row">
@@ -16,9 +16,10 @@
         </b-card-text>
         <b-card-text>
           Out of Square: {{ outMars }} <br />
-          Square X: {{ square.width }} <br />
-          Square Y: {{ square.height }} <br />
           Moves Inside: {{ totalmoves }} <br />
+          <hr>
+          Square Width: {{ square.width }} <br />
+          Square Height: {{ square.height }} <br />
         </b-card-text>
       </b-card>
     </div>
@@ -34,9 +35,9 @@
         class="m-auto mt-3 opacity animate__animated animate__zoomInDown"
       >
         <b-card-text>
-          Out of Square: {{ outMars }} <br />
           Initial coordinate X: {{ rover.cordXStart }} <br />
           Initial coordinate Y: {{ rover.cordYStart }} <br />
+          <hr>
           Final coordinate X: {{ rover.cordX }} <br />
           Final coordinate Y: {{ rover.cordY }} <br />
           Final Orientation: {{ rover.orientation.text }}
@@ -90,7 +91,7 @@ export default {
 }
 
 .opacity {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 b-card img {
