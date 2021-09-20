@@ -57,7 +57,7 @@
       >
     </div>
     <hr class="col-6 m-auto my-4 text-white border border-white" />
-    <div class="d-flex justify-content-around col-10 m-auto align-items-center">
+    <div class="d-flex justify-content-around col-10 m-auto align-items-center opacity">
       <!-- User decides actions of Rover with Buttons -->
       <div v-if="confirm" class="bg-dark rounded p-2 m-4">
         <div class="mt-3">
@@ -123,12 +123,15 @@
       v-if="outMars"
       class="
         d-flex
+        opacity
         bg-black
         text-danger
         mt-2
         col-6
         m-auto
         justify-content-center
+        align-items-center
+        flex-wrap
         rounded
         animate__animated animate__bounceInDown
       "
@@ -308,3 +311,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.opacity{
+  opacity: .85;
+}
+</style>

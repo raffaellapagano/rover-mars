@@ -1,6 +1,6 @@
 <template>
   <div class="home container border border-primary p-5 mars">
-    <h1 :square="square" class="text-white">Rover to Mars</h1>
+    <h1 class="text-white">Rover to Mars</h1>
     <div v-if="!confirm">
       <hr class="col-6 m-auto mb-3 text-danger" />
       <Square />

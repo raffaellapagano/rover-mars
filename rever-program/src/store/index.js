@@ -28,7 +28,7 @@ export default new Vuex.Store({
     commands: "",
     confirm: false,
     outMars: false,
-    moves: 0
+    moves: 0 //Moves before out of Square
   },
   getters: {
     GetSquare(state) {
