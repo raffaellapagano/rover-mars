@@ -296,6 +296,7 @@ export default {
           default:
             break;
         }
+        this.SetCommands(this.textComand);
       }
     },
     loadOnce() {

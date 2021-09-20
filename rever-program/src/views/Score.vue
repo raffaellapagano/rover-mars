@@ -16,7 +16,8 @@
         </b-card-text>
         <b-card-text>
           Out of Square: {{ outMars }} <br />
-          Moves Inside: {{ totalmoves }} <br />
+          Moves Inside: {{ totalmovesInside }} <br />
+          Total moves: {{ commands.length }}
           <hr>
           Square Width: {{ square.width }} <br />
           Square Height: {{ square.height }} <br />
@@ -63,7 +64,7 @@ export default {
         width: 0,
         height: 0,
       },
-      totalmoves: 3
+      totalmovesInside: 3
     };
   },
   methods: {
@@ -72,11 +73,11 @@ export default {
     },
   },
   computed: {
-    ...Vuex.mapState(["square", "rover", "outMars", "moves"]),
+    ...Vuex.mapState(["square", "rover", "outMars", "moves", "commands"]),
   },
   created() {
     this.drawSquare.height = parseInt(this.square.height);
-    this.totalmoves = this.moves
+    this.totalmovesInside = this.moves
   },
 };
 </script>
