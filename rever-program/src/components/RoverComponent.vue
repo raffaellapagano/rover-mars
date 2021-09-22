@@ -87,9 +87,12 @@
           :disabled="disableMove"
           variant="success"
           class="my-2"
-          @click="MoveRocket()"
+          @click="MoveRocket(); disableView = false"
           >Move</b-button
         >
+        <b-button :disabled="disableBtnView" variant="light" class="m-4" @click="goToScore()"
+        >View</b-button
+      >
       </div>
       <!-- Rover position -->
 
@@ -173,6 +176,7 @@ export default {
         { textO: "South", imgO: "rocketS.png" },
         { textO: "East", imgO: "rocket.png" },
       ],
+      disableView: true
     };
   },
   components: {
@@ -260,6 +264,9 @@ export default {
       }
       return verify;
     },
+    disableBtnView(){
+      return this.disableView
+    }
   },
   methods: {
     ...mapMutations([

@@ -2,7 +2,9 @@
   <div>
     <div class="d-flex">
       <div class="d-flex m-auto">
-        <Pixel v-for="pixel in drawSquare.width" :key="pixel.id"></Pixel>
+        <Pixel v-for="(pixel, index) in drawSquare.width" :key="pixel.id" 
+        :index="index + (indexY * square.width) - square.width">
+        </Pixel>
       </div>
     </div>
   </div>
@@ -19,10 +21,13 @@ export default {
   data() {
     return {
       drawSquare: {
-        width: 3,
+        width: 0,
         height: 0,
       },
     };
+  },
+  props:{
+    indexY: Number
   },
   methods: {},
   computed: {

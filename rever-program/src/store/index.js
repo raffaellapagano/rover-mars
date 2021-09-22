@@ -28,7 +28,8 @@ export default new Vuex.Store({
     commands: "",
     confirm: false,
     outMars: false,
-    moves: 0 //Moves before out of Square
+    moves: 0, //Moves before out of Square
+    arrayPosition:[]
   },
   getters: {
     GetSquare(state) {
@@ -162,6 +163,27 @@ export default new Vuex.Store({
         state.outMars = false;
       }
     },
+    CreateArrayPosition(state){
+      for (let y = 0; y < state.square.height; y++) {
+        for (let i = 0; i < state.square.width;) {
+          let element = { 
+            id: state.arrayPosition.length,
+            coordX: i, 
+            coordY: y,
+            color: ""}  
+            i++  
+            state.arrayPosition.push(element) 
+        }     
+      }
+    },
+    addColor(state){
+      for (let i = 0; i < state.arrayPosition.length; i++) {
+        if(state.arrayPosition[i].coordX === state.rover.cordX && 
+          state.arrayPosition[i].coordY === state.rover.cordY){
+            state.arrayPosition[i].color = "bg-primary"
+          }        
+      }
+    }
   },
   computed: {},
   actions: {},

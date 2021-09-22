@@ -1,17 +1,36 @@
 <template>
   <div class="d-flex">
-    <div class="pixel"></div>
+    <div :id="index" class="pixel" :class="arrayPosition[index].color">
+      n. {{arrayPosition[index].id}}
+      ({{arrayPosition[index].coordX}},{{arrayPosition[index].coordY}})</div>
   </div>
 </template>
 
 <script>
+import Vuex from "vuex";
 export default {
   components: {},
   data() {
     return {};
   },
-  methods: {},
-  computed: {},
+  props:{
+    index: {},
+    color: String
+  },
+  methods: {
+    ...Vuex.mapMutations(['addColor'])
+  },
+  updated() {
+      if(this.id == 2){
+        this.color = 'bg-primary'
+      }
+  },
+  computed: {
+    ...Vuex.mapState(['arrayPosition'])
+  },
+  mounted(){
+    this.addColor()
+  }
 };
 </script>
 

@@ -9,8 +9,8 @@
         <b-card-text>
           <div class="d-flex row">
             <RowPixel
-              v-for="pixel in drawSquare.height"
-              :key="pixel.id"
+              v-for="(pixel, index) in drawSquare.height"
+              :key="pixel.id" :indexY="square.height - index"
             ></RowPixel>
           </div>
         </b-card-text>
@@ -71,13 +71,17 @@ export default {
     back() {
       this.$router.go(-1);
     },
+    ...Vuex.mapMutations(['CreateArrayPosition', 'addColor'])
   },
   computed: {
     ...Vuex.mapState(["square", "rover", "outMars", "moves", "commands"]),
   },
   created() {
     this.drawSquare.height = parseInt(this.square.height);
-    this.totalmovesInside = this.moves
+    this.totalmovesInside = this.moves;
+    this.CreateArrayPosition();
+    this.addColor()
+
   },
 };
 </script>
