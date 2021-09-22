@@ -1,5 +1,5 @@
 <template>
-  <div class="home container border border-primary p-5 mars">
+  <div class="home p-5 mars">
     <h1 class="text-white">Rover to Mars</h1>
     <div v-if="!confirm">
       <hr class="col-6 m-auto mb-3 text-danger" />
@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 .mars {
-  height: 800px;
+  height: 100vh;
   background-image: url("../assets/MARS2.png");
   background-repeat: repeat;
   background-color: #cccccc;

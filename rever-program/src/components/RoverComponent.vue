@@ -92,7 +92,8 @@
         >
         <b-button :disabled="disableBtnView" variant="light" class="m-4" @click="goToScore()"
         >View</b-button
-      >
+        >
+        <p v-if="!disableView" class="text-primary">OUT OF SQUARE: {{outMars}}</p>
       </div>
       <!-- Rover position -->
 

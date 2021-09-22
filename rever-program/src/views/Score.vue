@@ -89,9 +89,9 @@ export default {
 
 <style scoped>
 .mars {
-  height: 800px;
+  height: 100vh;
   background-image: url("../assets/MARS.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-color: #cccccc;
   background-position: center;
 }
