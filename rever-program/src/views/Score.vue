@@ -1,10 +1,10 @@
 <template>
-  <div class="mars m-auto d-flex align-items-center justify-content-center flex-wrap">
-    <div class="m-3">
+  <div class="mars m-auto d-flex align-items-center justify-content-center">
+    <div class="m-3 col-3">
       <b-card
         title="Square Details"
         style="min-width: 20rem"
-        class="m-auto col-6 m-3 opacity animate__animated animate__zoomInDown"
+        class="m-auto m-3 opacity animate__animated animate__zoomInDown"
       >
         <b-card-text>
           <div class="d-flex row">
@@ -15,7 +15,7 @@
           </div>
         </b-card-text>
         <b-card-text>
-          Out of Square: {{ outMars }} <br />
+          OUT OF SQUARE: {{ outMars }} <br />
           Moves Inside: {{ totalmovesInside }} <br />
           Total moves: {{ commands.length }}
           <hr>
@@ -25,7 +25,7 @@
       </b-card>
     </div>
 
-    <div>
+    <div class="col-3">
       <b-card
         :img-src="require('../assets/rocket.png')"
         title="Rover Details"
@@ -33,7 +33,7 @@
         img-top
         tag="article"
         style="max-width: 20rem"
-        class="m-auto mt-3 opacity animate__animated animate__zoomInDown"
+        class="mt-3 opacity animate__animated animate__zoomInDown"
       >
         <b-card-text>
           Initial coordinate X: {{ rover.cordXStart }} <br />
@@ -80,9 +80,10 @@ export default {
     this.drawSquare.height = parseInt(this.square.height);
     this.totalmovesInside = this.moves;
     this.CreateArrayPosition();
-    this.addColor()
-
   },
+  updated(){
+    this.addColor()
+  }
 };
 </script>
 
